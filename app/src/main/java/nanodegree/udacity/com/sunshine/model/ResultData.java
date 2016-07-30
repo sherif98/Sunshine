@@ -8,9 +8,9 @@ public class ResultData {
     @SerializedName("city")
     private LocationData mLocationData;
     @SerializedName("list")
-    private List<WeatherData> mWeatherData;
+    private List<ForecastData> mWeatherData;
 
-    public ResultData(LocationData locationData, List<WeatherData> weatherData) {
+    public ResultData(LocationData locationData, List<ForecastData> weatherData) {
         mLocationData = locationData;
         mWeatherData = weatherData;
     }
@@ -19,7 +19,7 @@ public class ResultData {
         return mLocationData;
     }
 
-    public List<WeatherData> getWeatherData() {
+    public List<ForecastData> getWeatherData() {
         return mWeatherData;
     }
 }

@@ -1,9 +1,12 @@
-package nanodegree.udacity.com.sunshine;
+package nanodegree.udacity.com.sunshine.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import nanodegree.udacity.com.sunshine.R;
+import nanodegree.udacity.com.sunshine.fragments.ForecastFragment;
 
 public class MainActivity extends AppCompatActivity {
 

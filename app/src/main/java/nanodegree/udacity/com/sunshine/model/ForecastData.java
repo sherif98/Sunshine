@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class WeatherData {
+public class ForecastData {
     @SerializedName("temp")
     private Temp mTemperature;
     @SerializedName("weather")
     private List<Weather> mWeather;
 
-    public WeatherData(Temp temperature, List<Weather> weather) {
+    public ForecastData(Temp temperature, List<Weather> weather) {
         mTemperature = temperature;
         mWeather = weather;
     }
