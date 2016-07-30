@@ -2,7 +2,10 @@ package nanodegree.udacity.com.sunshine.fragments;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -60,11 +63,29 @@ public class DetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
             Intent intent = SettingsActivity.newIntent(getActivity());
             startActivity(intent);
             return true;
+        } else if (id == R.id.action_map) {
+            openPreferedLocationInMap();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openPreferedLocationInMap() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String location = sharedPreferences.getString(getString(R.string.pref_location_key),
+                getString(R.string.pref_location_default));
+        Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                .appendQueryParameter("q", location)
+                .build();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }

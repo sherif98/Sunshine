@@ -8,7 +8,6 @@
     <TextView
         android:id="@+id/text_data"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>
