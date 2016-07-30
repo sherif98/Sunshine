@@ -19,7 +19,8 @@ public class FetchWeatherDataTask extends AsyncTask<String, Void, ResultData> {
     protected ResultData doInBackground(String... parameters) {
 
         OpenWeatherAPI service = OpenWeatherAPI.retrofit.create(OpenWeatherAPI.class);
-        Call<ResultData> call = service.getWeatherData(parameters[0], parameters[1], APIKeys.WEATHER_API_KEY);
+        Call<ResultData> call = service.getWeatherData(parameters[0], parameters[1], parameters[2],
+                APIKeys.WEATHER_API_KEY);
         try {
             return call.execute().body();
         } catch (IOException e) {

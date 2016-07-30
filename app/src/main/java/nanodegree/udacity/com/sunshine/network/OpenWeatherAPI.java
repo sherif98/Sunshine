@@ -17,5 +17,5 @@ public interface OpenWeatherAPI {
 
     @GET("/data/2.5/forecast/daily")
     Call<ResultData> getWeatherData(@Query("q") String q, @Query("units") String units,
-                                    @Query("APPID") String APPID);
+                                    @Query("cnt") String cnt, @Query("APPID") String APPID);
 }
