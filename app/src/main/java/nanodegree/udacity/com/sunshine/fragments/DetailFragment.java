@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,6 +61,13 @@ public class DetailFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.detail_activity_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        ShareActionProvider shareActionProvider =
+                (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        Intent shareIntent = createShareIntent();
+        if (shareActionProvider != null) {
+            shareActionProvider.setShareIntent(shareIntent);
+        }
     }
 
     @Override
@@ -71,8 +80,18 @@ public class DetailFragment extends Fragment {
         } else if (id == R.id.action_map) {
             openPreferedLocationInMap();
             return true;
+        } else if (id == R.id.action_share) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private Intent createShareIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, getArguments().getString(DATA));
+        return intent;
     }
 
     private void openPreferedLocationInMap() {
